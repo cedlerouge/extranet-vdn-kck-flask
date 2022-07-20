@@ -18,7 +18,7 @@ from flask_oidc import OpenIDConnect
 
 kck_url = os.getenv("KCK_URL", "https://connect.noumea.nc")
 kck_client_id = os.getenv("KCK_CLIENT", "www-noumea.nc")
-kck_client_secret = os.getenv("KCK_CLIENT_SECRET", "XXXXXXXXX")
+kck_client_secret = os.getenv("KCK_CLIENT_SECRET", "totototototo")
 kck_realm = os.getenv("KCK_REALM", "https://connect.noumea.nc")
 
 port = os.getenv("KCK_FPORT", 8080)
@@ -26,7 +26,8 @@ port = os.getenv("KCK_FPORT", 8080)
 
 app = Flask(__name__, static_url_path="/templates/")
 app.config.update({
-    'SECRET_KEY': 'SomethingNotEntirelySecret',
+    # python -c 'import os; print(os.urandom(16))'
+    'SECRET_KEY': b'.\xfb*\xafE\xf5\xa7\x87\xe8\x9b\xff\x80\xb0\xe4\x07\xb9',
     'TESTING': True,
     'DEBUG': True,
     'OIDC_CLIENT_SECRETS': 'client_secrets.json',

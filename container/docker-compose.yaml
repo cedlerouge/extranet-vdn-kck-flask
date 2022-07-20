@@ -1,0 +1,83 @@
+version: '3.5'
+services:
+  postgresql:
+    container_name: pgkeycloak
+    hostname: pgkeycloak
+    restart: always
+    image: postgres:13.1-alpine
+    environment:
+      - POSTGRES_USER=keycloak
+      - POSTGRES_PASSWORD=keycloak
+      - POSTGRES_DB=keycloak
+    ports:
+      - 5402:5432
+    volumes:
+      - pg-data:/var/lib/postgresql:rw
+    networks:                                                                                                                           
+      - keycloak-network                                        
+                                                                    
+  keycloak-1:
+    container_name: keycloak-1
+    hostname: keycloak-1
+    restart: always
+    image: jboss/keycloak
+    links:         
+      - postgresql  
+    environment: 
+      - TZ=Pacific/Noumea
+      - DB_VENDOR=postgres
+      - DB_ADDR=pgkeycloak
+      - DB_PORT=5432
+      - DB_DATABASE=keycloak
+      - DB_USER=keycloak
+      - DB_PASSWORD=keycloak
+      - KEYCLOAK_USER=admin
+      - KEYCLOAK_PASSWORD=password
+      - JGROUPS_DISCOVERY_PROTOCOL=JDBC_PING
+      - JGROUPS_DISCOVERY_PROPERTIES=datasource_jndi_name=java:jboss/datasources/KeycloakDS,info_writer_sleep_time=500,initialize_sql="CREATE TABLE IF NOT EXISTS JGROUPSPING ( own_addr varchar(200) NOT NULL, cluster_name varchar(200) NOT NULL, created timestamp default current_timestamp, ping_data BYTEA, constraint PK_JGROUPSPING PRIMARY KEY (own_addr, cluster_name))" 
+    command: "-Dkeycloak.profile.feature.upload_scripts=enabled"
+    ports: 
+      - 8081:8080
+    networks:
+      - keycloak-network
+
+  keycloak-2:
+    container_name: keycloak-2
+    hostname: keycloak-2
+    restart: always
+    image: jboss/keycloak
+    links: 
+      - postgresql
+    environment: 
+      - TZ=Pacific/Noumea
+      - DB_VENDOR=postgres
+      - DB_ADDR=postgresql
+      - DB_PORT=5432
+      - DB_DATABASE=keycloak
+      - DB_USER=keycloak
+      - DB_PASSWORD=keycloak
+      - KEYCLOAK_USER=admin
+      - KEYCLOAK_PASSWORD=password
+      - JGROUPS_DISCOVERY_PROTOCOL=JDBC_PING
+      - JGROUPS_DISCOVERY_PROPERTIES=datasource_jndi_name=java:jboss/datasources/KeycloakDS,info_writer_sleep_time=500,initialize_sql="CREATE TABLE IF NOT EXISTS JGROUPSPING ( own_addr varchar(200) NOT NULL, cluster_name varchar(200) NOT NULL, created timestamp default current_timestamp, ping_data BYTEA, constraint PK_JGROUPSPING PRIMARY KEY (own_addr, cluster_name))" 
+    command: "-Dkeycloak.profile.feature.upload_scripts=enabled"
+    ports: 
+      - 8082:8080
+    networks:
+      - keycloak-network
+
+#  admin:
+#    image: adminer
+#    restart: always
+#    depends_on:
+#      - postgresql
+#    ports:
+#      - 8080:8080
+#    networks:
+#      - keycloak-network
+
+networks:
+  keycloak-network:
+
+volumes:
+  pg-data:

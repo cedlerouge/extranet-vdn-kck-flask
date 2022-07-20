@@ -1,6 +1,16 @@
 {% extends "base.html.j2" %}
 
 {% block title %}{{ user.username }}{% endblock %}
+
+{% block head %}
+<div class="container bg-info rounded">
+    <center>
+        <i class="fas fa=comment fa-5x"></i>
+        <h1><a class="text-white" href="{{url_for('home') }}">Mes informations</a></h1>
+    </center>
+</div>
+{% endblock %}
+
 {% block leftbody %}
 <div class="row">
     <div class="col bg-light">
