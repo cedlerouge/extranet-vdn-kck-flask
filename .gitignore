@@ -1,0 +1,8 @@
+.venv
+.vscode
+.pyc
+.swp
+
+
+client_secrets.json
+

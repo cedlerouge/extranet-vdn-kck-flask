@@ -1,0 +1,16 @@
+{% extends "base.html.j2" %}
+
+{% block title %}{{ username }}{% endblock %}
+{% block leftbody %}
+<div class="row">
+    <div class="col bg-light">
+        {% if "" in username %}
+        <h1 class="ẗext-center">Welcome Anonymous</h1>
+        <p class="ẗext-center"><a href="/private">login</a></p>
+        {% else %}
+        <h1 class="ẗext-center">Welcome {{ username }}</h1>
+        <p class="ẗext-center"><a href="/private">private</a></p>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,12 @@
+{% extends "base.html.j2" %}
+
+{% block title %}{{ user.username }}{% endblock %}
+{% block leftbody %}
+<div class="row">
+    <div class="col bg-light">
+        <h1 class="ẗext-center">{{ user.username }}</h1>
+        <p class="ẗext-center">email: {{ user.email }}</p>
+        <p class="ẗext-center">user_id: {{ user.user_id }}</p>
+    </div>
+</div>
+{% endblock %}
