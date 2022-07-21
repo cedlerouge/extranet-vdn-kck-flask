@@ -16,6 +16,8 @@ from flask import (
 )
 from flask_oidc import OpenIDConnect
 
+from config import DevConfig
+
 kck_url = os.getenv("KCK_URL", "https://connect.noumea.nc")
 kck_client_id = os.getenv("KCK_CLIENT", "www-noumea.nc")
 kck_client_secret = os.getenv("KCK_CLIENT_SECRET", "totototototo")
@@ -25,19 +27,20 @@ port = os.getenv("KCK_FPORT", 8080)
 
 
 app = Flask(__name__, static_url_path="/templates/")
-app.config.update({
-    # python -c 'import os; print(os.urandom(16))'
-    'SECRET_KEY': b'.\xfb*\xafE\xf5\xa7\x87\xe8\x9b\xff\x80\xb0\xe4\x07\xb9',
-    'TESTING': True,
-    'DEBUG': True,
-    'OIDC_CLIENT_SECRETS': 'client_secrets.json',
-    'OIDC_ID_TOKEN_COOKIE_SECURE': False,
-    'OIDC_REQUIRE_VERIFIED_EMAIL': False,
-    'OIDC_USER_INFO_ENABLED': True,
-    'OIDC_OPEN_REALM': kck_realm,
-    'OIDC_SCOPES': ['openid', 'email', 'profile'],
-    'OIDC_INTROSPECTION_AUTH_METHOD': 'client_secret_post'
-})
+app.config.from_object(DevConfig)
+#app.config.update({
+#    # python -c 'import os; print(os.urandom(16))'
+#    'SECRET_KEY': b'.\xfb*\xafE\xf5\xa7\x87\xe8\x9b\xff\x80\xb0\xe4\x07\xb9',
+#    'TESTING': True,
+#    'DEBUG': True,
+#    'OIDC_CLIENT_SECRETS': 'client_secrets.json',
+#    'OIDC_ID_TOKEN_COOKIE_SECURE': False,
+#    'OIDC_REQUIRE_VERIFIED_EMAIL': False,
+#    'OIDC_USER_INFO_ENABLED': True,
+#    'OIDC_OPEN_REALM': kck_realm,
+#    'OIDC_SCOPES': ['openid', 'email', 'profile'],
+#    'OIDC_INTROSPECTION_AUTH_METHOD': 'client_secret_post'
+#})
 
 oidc = OpenIDConnect(app)
 
