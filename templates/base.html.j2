@@ -11,19 +11,15 @@
         <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">
     </head>
     <body>
-        {% include 'navbar.html.j2' %}
-        <div class="container">
-            <div class="row row-lg-4">
-                <div class="col">
-                    {% block head %}
-                    {% include 'head.html.j2' %}
-                    {% endblock %}
-                </div>
-            </div>
-            {% include 'message.html.j2' %}
-            {% block body %}
+        {% include 'head.html.j2' %}
+	    <div class="container flex-nowrap">
+        <main role="main" class="flex-grow-1 d-flex flex-column">
+	        <a id="main-content" tabindex="-1"></a>
+            {% include 'navbar.html.j2' %}
             <div class="row">
+                {% block body %}
                 <div class="col-lg-9">
+                    {% include 'message.html.j2' %}
                     {% block leftbody %}
                     {% endblock %}
                 </div>
@@ -32,9 +28,12 @@
                     {% include 'rightbody.html.j2' %}
                     {% endblock %}
                 </div>
+                {% endblock %}
             </div>
-            {% endblock %}
+        </main>
+        <footer class="mt-auto" >
             {% include 'footer.html.j2' %}
+        </footer>
         </div>
     </body>
     <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>

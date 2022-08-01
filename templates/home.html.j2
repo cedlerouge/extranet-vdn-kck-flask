@@ -4,8 +4,11 @@
 {% block leftbody %}
 <div class="row">
     <div class="col bg-light">
+        <h1 class="ẗext-center">Page citoyen de la ville de Noumea</h1>
+        <p>Cette page présente l'ensemble des e-services de la ville de Nouméa</p>
+        <p>Vous pouvez suivre vos demandes et dossiers en cours et accèder à vos données personnelles</p>
         {% if "" in username %}
-        <h1 class="ẗext-center">Welcome Anonymous</h1>
+        <p>Pour accèder aux e-service, il faut vous authentifier</p>
         <p class="ẗext-center"><a href="/private">login</a></p>
         {% else %}
         <h1 class="ẗext-center">Welcome {{ username }}</h1>
