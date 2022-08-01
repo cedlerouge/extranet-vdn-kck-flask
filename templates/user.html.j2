@@ -14,9 +14,12 @@
 {% block leftbody %}
 <div class="row">
     <div class="col bg-light">
-        <h1 class="ẗext-center">{{ user.username }}</h1>
+        <h1 class="ẗext-center">{{ user.greeting }}</h1>
         <p class="ẗext-center">email: {{ user.email }}</p>
-        <p class="ẗext-center">user_id: {{ user.user_id }}</p>
+        <p class="ẗext-center">email_verified: {{ user.email_verified }}</p>
+        <p class="ẗext-center">gender: {{ user.gender }}</p>
+        <p class="ẗext-center">birthdate: {{ user.birthdate }}</p>
+        <p class="ẗext-center">birthplace: {{ user.birthplace }}</p>
     </div>
 </div>
 {% endblock %}

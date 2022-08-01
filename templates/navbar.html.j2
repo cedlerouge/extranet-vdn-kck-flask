@@ -10,17 +10,26 @@
             <li class="nav-item">
                 <a class="nav-link" href="{{ url_for('home') }}"></a>
             </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#">
-                <i class="fa fa-fw fa-signout"></i>Logout</a>
+            <!--<li class="nav-item">
+                <a class="nav-link" href="http://localhost:8080/private">
+                <i class="fa fa-fw fa-signout"></i>Mes informations from Keycloak</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#">
+                <a class="nav-link" href="https://iam.ville-noumea.nc/auth/realms/Eservices-VDN/protocol/openid-connect/auth?client_id=kck-flask&redirect_uri=http%3A%2F%2Flocalhost%3A8080%2Foidc_callback&response_type=code&scope=openid+email+profile&kc_idp_hint=nc-connect">
+                <i class="fa fa-fw fa-signout"></i>Login NC-Connect</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="https://iam.ville-noumea.nc/auth/realms/Eservices-VDN/protocol/openid-connect/logout">
+                <i class="fa fa-fw fa-sign-in"></i>Logout</a>
+            </li>-->
+            <li class="nav-item">
+                {% if user %}
+                <a class="nav-link" href="/logout">
+                <i class="fa fa-fw fa-sign-in"></i>Se déconnecter</a>
+                {% else %}
+                <a class="nav-link" href="/private">
                 <i class="fa fa-fw fa-sign-in"></i>Login</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#">
-                <i class="fa fa-fw fa-sign-in"></i>Register</a>
+                {% endif %}
             </li>
         </ul>
     </div>

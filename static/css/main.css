@@ -1,0 +1,69 @@
+/* https://css-tricks.com/a-complete-guide-to-links-and-buttons/ */
+/* 
+a {
+    display: block;
+    @extend .absolute-centering;
+    width: 80px;
+    height: 50px;
+    @extend .text-formatting;
+    z-index: 1;
+   
+    &:after {
+      content: '';
+      @extend .absolute-centering;
+      background: linear-gradient($deg, $violet, $orange, $violet);
+      background-size: $size $size;
+      @include clip-frame($width, $height, $border);
+      @include animation(gradient $dur ease-in-out infinite, border 1s forwards ease-in-out reverse);
+    }
+    
+    & > span {
+      display: block;
+      background: linear-gradient($deg, $violet, $orange, $violet);
+      background-size: $size $size;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+       @include animation(gradient $dur ease-in-out infinite);
+    }
+  }
+*/
+  /* helpers */
+/*
+.absolute-centering {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto;
+  }
+  
+  .text-formatting {
+    text-transform: uppercase;
+    text-decoration: none;
+    text-align: center;
+    letter-spacing: 2px;
+    line-height: 70px;
+    font-family: 'Squada One', cursive;
+    font-size: 28px;
+  }*/
+
+  #ncconnect {
+    background-image: url(../bouton_NCConnect.png);
+    display: block;
+    margin: 0;
+    width: 210px;
+    height: 61px
+    /*text-indent: -9999px;
+    /*width: 981px;
+    height: 180px;*/
+  }
+
+  #keycloak {
+    background-image: url(../bouton_NoumeaConnect.png);
+    display: block;
+    margin: 0 auto;
+    /*text-indent: -9999px;*/
+    width: 219px;
+    height: 68px;
+  }
