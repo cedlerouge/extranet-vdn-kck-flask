@@ -1,0 +1,22 @@
+# python 
+__pycache__
+*.pyc
+
+# vim 
+*.swp
+*.swo
+
+# keycloak 
+container
+
+# config
+client_secrets.*
+
+# realm-export.json
+realm-export.json
+
+
+# avoid secret
+**/.env
+**/.aws
+**/.ssh
