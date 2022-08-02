@@ -1,0 +1,53 @@
+<!-- liste l'ensemble des e-services souscrit par l'usager + tous les e-services -->
+<div>
+    <p><h2>Mes e-services</h2></p>
+</div>
+{% if user.eservices %}
+    {% set ns = namespace(div = 0) %}
+    {% for es in user.eservices %}
+        {% if loop.index % 4 == 1 %}
+            <div class="row">
+            {% set ns.div = 1 %}
+        {% endif %}
+                <div class="col-md-3">
+                    <button class="btn btn-primary mb-4 me-4" type="button">{{ es.nom }}</button>
+                </div>
+        {% if loop.index % 4 == 0 %}
+            </div>
+            {% set ns.div = 0 %}
+        {% endif %}
+    {% endfor %}
+    {% if ns.div == 1 %}
+        {% set ns.div = 0 %}
+            <!-- for end of div -->
+            </div>
+    {% endif %}
+{% endif %}
+
+<div>
+    <p><h2>Liste des e-services de la ville</h2></p>
+</div>
+{% if eservices %}
+    {% set ns = namespace(div = 0) %}
+    {% for es in eservices %}
+        <!--{{ loop.index }}-->
+        {% if loop.index % 4 == 1 %}
+            <div class="row">
+            {% set ns.div = 1 %}
+        {% endif %}
+                <!--{{ ns.div }}-->
+                <div class="col-md-3">
+                    <button class="btn btn-outline-primary mb-4 me-4" type="button">{{ es }}</button>
+                </div>
+        {% if loop.index % 4 == 0 %}
+            </div>
+            {% set ns.div = 0 %}
+        {% endif %}
+    {% endfor %}
+    {% if ns.div == 1 %}
+        {% set ns.div = 0 %}
+            <!-- for end of div -->
+            </div>
+    {% endif %}
+{% endif %}
+

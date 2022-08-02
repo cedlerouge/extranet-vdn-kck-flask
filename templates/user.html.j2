@@ -1,6 +1,6 @@
 {% extends "base.html.j2" %}
 
-{% block title %}{{ user.username }}{% endblock %}
+{% block title %}{{ user.given_name }}{% endblock %}
 
 {% block head %}
 <div class="container bg-info rounded">
@@ -13,7 +13,7 @@
 
 {% block leftbody %}
 <div class="row">
-    <div class="col bg-light">
+    <div class="col">
         <h1 class="ẗext-center">{{ user.greeting }}</h1>
         <p class="ẗext-center">email: {{ user.email }}</p>
         <p class="ẗext-center">email_verified: {{ user.email_verified }}</p>

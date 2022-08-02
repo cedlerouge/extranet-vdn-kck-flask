@@ -1,0 +1,21 @@
+{% extends "base.html.j2" %}
+
+{% block title %}{{ username }}{% endblock %}
+{% block leftbody %}
+<div class="row">
+    <div class="col">
+        <h1 class="ẗext-center">Backoffice de la Page Citoyen</h1>
+        <div class="row">
+            <p>Nombre de comptes : {{ count }}</p>
+        </div>
+        <div class="row">
+        <ul class="list-group-item">
+        {% for user in users %}
+            <li class="list-item">
+                <span>{{ user }}</span>
+            </li>
+        {% endfor %}
+        </div>
+    </div>
+</div>
+{% endblock %}

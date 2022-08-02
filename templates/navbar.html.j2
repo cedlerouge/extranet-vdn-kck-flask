@@ -1,6 +1,7 @@
 
 
-<div id="region-breadcrumbs" class="region d-none d-lg-block">
+        <div id="region-breadcrumbs" class="region d-none d-lg-block">
+            <div class="container py-3">
                 <div class="row row-cols-auto justify-content-between align-items-center">
                     <div class="block block-system block-system-breadcrumb-block">
                         <nav aria-label="breadcrumb">
@@ -9,11 +10,19 @@
                                 <li class="breadcrumb-item">
                                     <a href="/" aria-label="Accueil"><span>Accueil</span></a>
                                 </li>
+                                {% if nav_item -%}
+                                    {% for i in nav_item -%}
+                                <li class="breadcrumb-item">
+                                    <a href="{{ i.link }}" aria-label="{{ i.title }}"><span>{{ i.title}}</span></a>
+                                </li>
+                                    {% endfor -%}
+                                {% endif -%}
                             </ol>
                         </nav>
                     </div>
                 </div>
             </div>
+        </div>
 
 
 <!--<nav class="navbar navbar-expand-lg navbar-dark bg-dark">

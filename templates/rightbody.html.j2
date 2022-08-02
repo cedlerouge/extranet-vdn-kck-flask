@@ -1,23 +1,38 @@
 <div class="row">
     <div class="col">
-        <h5>Authentification</h5>
         {% if user %}
         <div class="greeting">
-            <p class="text-center">Bonjour {{ user.username }}</p>
+            <p class="text-center">Bonjour {{ user.given_name }}</p>
+            <p class="text-center"><a class="nav-link" href="/logout">Se déconnecter</a></p>
         </div>
         {% else %}
-        <ul class="list-group">
-            <li class="list-group-item">
-                <a class="btn btn-outline-primary mb-4 me-4" href="https://iam.ville-noumea.nc/auth/realms/Eservices-VDN/protocol/openid-connect/auth?client_id=kck-flask&redirect_uri=http%3A%2F%2F172.16.24.111%3A8080%2Foidc_callback&response_type=code&scope=openid+email+profile&kc_idp_hint=nc-connect" alt="Login nc-connect">
-                    <i class="icon-link-external"></i>
-                    NC-Connect
-                </a>
-            </li>
-        </ul>
+        <h5>Authentification</h5>
+        Vous pouvez vous authentifier en utilisant votre compte NC-Connect
+        <p>
+            <a class="btn btn-outline-primary mb-4 me-4" href="https://iam.ville-noumea.nc/auth/realms/Eservices-VDN/protocol/openid-connect/auth?client_id=kck-flask&redirect_uri=http%3A%2F%2F172.16.24.111%3A8080%2Foidc_callback&response_type=code&scope=openid+email+profile&kc_idp_hint=nc-connect" alt="Login nc-connect">
+                <i class="icon-link-external"></i>
+                NC-Connect
+            </a>
+        </p>
         {% endif %}
     </div>
 </div>
 
+<div class="row">
+    <div class="col">
+        <h5>Menu</h5>
+    </div>
+</div>
+
+<ul class="list-group">
+    <li class="list-group-item">
+        <a href="/private">Mes Informations</a>
+    </li>
+    <li class="list-group-item">
+        <a href="/eservices">E-Services</a>
+    </li>
+</ul>
+<p></p>
 <div class="row">
     <div class="col">
         <h5>Proc&eacute;dures r&eacute;centes</h5>
@@ -27,18 +42,6 @@
     {% for p in recent %}
     <li class="list-group-item">
         <a href="{{ url_for('process', proc_id=p.id) }}">{{ p.title }}</a>
-    </li>
-    {% endfor %}
-</ul>
-<div class="row">
-    <div class="col">
-        <h5>Tag populaires</h5>
-    </div>
-</div>
-<ul class="list-group">
-    {% for tag in top_tag %}
-    <li class="list-group-item">
-        <a href="{{ url_for('process_by_tag', tag_name=tag[0].title) }}">{{ tag[0].title }}</a>
     </li>
     {% endfor %}
 </ul>
